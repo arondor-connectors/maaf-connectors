@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<web-app xmlns="http://java.sun.com/xml/ns/javaee" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" 
+	version="2.5">
+	
+	<!-- Listeners must be included before any servlet / servlet-mapping markups -->
+	<listener>
+		<listener-class>com.arondor.viewer.server.startup.StartupContextListener</listener-class>
+	</listener>
+	
+	  <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath:arender-user-context.xml</param-value>
+    </context-param>
+	
+
+	<!-- Servlets -->
+	<servlet>
+		<servlet-name>arondorViewerServiceServlet</servlet-name>
+		<servlet-class>com.arondor.viewer.server.servlet.ArondorViewerServiceImpl</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>configurationServiceServlet</servlet-name>
+		<servlet-class>com.arondor.viewer.server.configuration.ServletConfigurationService</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>annotationServiceServlet</servlet-name>
+		<servlet-class>com.arondor.viewer.server.servlet.AnnotationServiceServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>imageServlet</servlet-name>
+		<servlet-class>com.arondor.viewer.server.servlet.ImageServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>printServlet</servlet-name>
+		<servlet-class>com.arondor.viewer.server.servlet.PrintServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>downloadServlet</servlet-name>
+		<servlet-class>com.arondor.viewer.server.servlet.DownloadServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>uploadServlet</servlet-name>
+		<servlet-class>com.arondor.viewer.server.servlet.UploadServlet</servlet-class>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>streamingServlet</servlet-name>
+		<servlet-class>com.arondor.viewer.server.servlet.StreamingServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>arondorViewerServiceServlet</servlet-name>
+		<url-pattern>/arendergwt/arondorViewerService</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>annotationServiceServlet</servlet-name>
+		<url-pattern>/arendergwt/annotationService</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>configurationServiceServlet</servlet-name>
+		<url-pattern>/arendergwt/configurationService</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>imageServlet</servlet-name>
+		<url-pattern>/arendergwt/imageServlet</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>printServlet</servlet-name>
+		<url-pattern>/arendergwt/printServlet</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>downloadServlet</servlet-name>
+		<url-pattern>/arendergwt/downloadServlet</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>uploadServlet</servlet-name>
+		<url-pattern>/arendergwt/uploadServlet</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+ 		<servlet-name>streamingServlet</servlet-name>
+ 		<url-pattern>/arendergwt/streamingServlet</url-pattern>
+ 	</servlet-mapping>
+ 	
+    <filter>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy
+        </filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+	<!--security-constraint>
+		<web-resource-collection>
+			<web-resource-name>action</web-resource-name>
+			<description>Define the container secured resource</description>
+			<url-pattern>/ArondorViewer.jsp</url-pattern>
+			<url-pattern>/ARender.jsp</url-pattern>
+			<url-pattern>/DownloadDocumentWithAnnotations.jsp</url-pattern>
+			<url-pattern>/arendergwt/*</url-pattern>
+			<url-pattern>/openExternalDocument.jsp</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>All Authenticated</role-name>
+		</auth-constraint>
+		<user-data-constraint>
+			<description>User data constraints</description>
+			<transport-guarantee>NONE</transport-guarantee>
+		</user-data-constraint>
+	</security-constraint>
+
+	<security-role>
+		<description>All Authenticated</description>
+		<role-name>All Authenticated</role-name>
+	</security-role-->
+
+
+	<!-- Default page to serve -->
+	<welcome-file-list>
+		<welcome-file>ARender.html</welcome-file>
+	</welcome-file-list>
+</web-app>

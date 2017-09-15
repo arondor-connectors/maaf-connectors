@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+       <!--This button is only here for test purpose (MAFF does not use it)-->
+
+       <bean id="customMaafButton"
+             class="com.arondor.viewer.client.toppanel.presenter.ButtonPresenter"
+             scope="prototype">
+              <property name="enabled" value="${topPanel.print}" />
+              <property name="imageResource">
+                     <ref bean="topPanelImages#printDocument" />
+              </property>
+              <property name="buttonTitle">
+                     <ref bean="labels#printDocument" />
+              </property>
+              <property name="buttonHandler">
+                     <bean class="com.arondor.viewer.client.jsapi.toppanel.JSCallButtonHandler">
+                            <property name="jsCode">
+                                   <value>
+                                       $wnd.loadMergedDocument();
+                                   </value>
+                            </property>
+                     </bean>
+              </property>
+       </bean>
+
+</beans>

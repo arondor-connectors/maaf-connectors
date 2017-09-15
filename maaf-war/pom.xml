@@ -1,0 +1,149 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>fr.maaf.arender</groupId>
+    <artifactId>arender-maaf</artifactId>
+    <version>2017.9.15</version>
+    <packaging>war</packaging>
+    <name>ARender HMI for MAAF</name>
+    <description>ARender HMI for MAAF</description>
+
+    <properties>
+        <arender.version>3.1.5</arender.version>
+        <arender.api.version>3.1.0-3</arender.api.version>
+        <spring.arender.version>4.1.6.RELEASE</spring.arender.version>
+        <spring.security.arender.version>4.0.1.RELEASE</spring.security.arender.version>
+        <maven.war.webxml>src/main/webapp/WEB-INF/web.xml</maven.war.webxml>
+    </properties>
+
+    <dependencies>
+
+        <!-- ***** ARender ***** -->
+        <dependency>
+            <groupId>com.arondor.arender</groupId>
+            <artifactId>arondor-arender-hmi-filenet</artifactId>
+            <version>${arender.version}</version>
+            <type>war</type>
+        </dependency>
+
+        <!-- ** ARender API **-->
+        <dependency>
+            <groupId>com.arondor.arender</groupId>
+            <artifactId>arondor-arender-client-api</artifactId>
+            <version>${arender.api.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.arondor.arender</groupId>
+            <artifactId>arondor-arender-annotation-api</artifactId>
+            <version>${arender.api.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.arondor.arender</groupId>
+            <artifactId>arondor-arender-rendition-api</artifactId>
+            <version>${arender.api.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.arondor.arender</groupId>
+            <artifactId>arondor-arender-hmi-api</artifactId>
+            <version>${arender.api.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- ** ARender CORE **-->
+        <dependency>
+            <groupId>com.arondor.arender</groupId>
+            <artifactId>arondor-arender-common</artifactId>
+            <version>${arender.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.arondor.arender</groupId>
+            <artifactId>arondor-arender-xfdf-annotation</artifactId>
+            <version>${arender.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.arondor.arender</groupId>
+            <artifactId>arondor-arender-hmi-server</artifactId>
+            <version>${arender.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>1.6.1</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-config</artifactId>
+            <version>${spring.security.arender.version}</version>
+            <type>jar</type>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <version>2.5</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.11</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.arondor.arender</groupId>
+            <artifactId>arondor-arender-common</artifactId>
+            <version>3.1.6-SNAPSHOT</version>
+            <type>jar</type>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.arondor.arender</groupId>
+            <artifactId>arondor-arender-client-javarmi</artifactId>
+            <version>3.1.6-SNAPSHOT</version>
+            <type>jar</type>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>xerces</groupId>
+            <artifactId>xercesImpl</artifactId>
+            <version>2.9.1</version>
+            <scope>runtime</scope>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.3</version>
+                <configuration>
+                    <overlays>
+                        <overlay>
+                            <!-- empty groupId/artifactId represents the current build -->
+                        </overlay>
+                        <overlay>
+                            <groupId>com.arondor.arender</groupId>
+                            <artifactId>arondor-arender-hmi-filenet</artifactId>
+                        </overlay>
+                    </overlays>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
